@@ -1,0 +1,36 @@
+    1  history -w
+    2  unzip /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip -d .
+    3  ls
+    4  head -n 1 amazon_reviews_multilingual_US_v1_00.tsv 
+    5  head -n 1 amazon_reviews_multilingual_US_v1_00.tsv > amazon_reviews_10k_random.tsv
+    6  tail -n +2 amazon_reviews_multilingual_US_v1_00.tsv | shuf -n 10000 >> amazon_reviews_10k_random.tsv 
+    7  wc -l amazon_reviews_10k_random.tsv 
+    8  wc -l > amazon_reviews_10k_random.tsv 
+    9  wc -l < amazon_reviews_10k_random.tsv 
+   10  head -n 1 amazon_reviews_multilingual_US_v1_00.tsv > amazon_reviews_10k_random.tsv
+   11  tail -n +2 amazon_reviews_multilingual_US_v1_00.tsv | shuf -n 10000 >> amazon_reviews_10k_random.tsv
+   12  wc -l amazon_reviews_10k_random.tsv 
+   13  wc -l < amazon_reviews_10k_random.tsv 
+   14  wc -l < amazon_reviews_10k_random.tsv > counts.txt
+   15  tail -n +2 amazon_reviews_10k_random.tsv | wc -l > counts.txt
+   16  cat counts.txt
+   17  wc -l < amazon_reviews_10k_random.tsv > counts.txt
+   18  tail -n +2 amazon_reviews_10k_random.tsv | wc -l >> counts.txt
+   19  cat counts.txt
+   20  vi counts.txt
+   21  tail +2 amazon_reviews_10k_random.tsv | cut -f 8 | head
+   22  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 8 | head
+   23  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 8 | sort | head
+   24  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 8 | sort | uniq -c
+   25  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 8 | sort | uniq -c | sort -k 1 -gr
+   26  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 8 | sort | uniq -c | sort -k 1 -gr > hist_star_rating.txt
+   27  cat hist_star_rating.txt 
+   28  ls
+   29  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 2 | sort | uniq -c | sort -k 1 -gr
+   30  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 2 | sort | uniq -c | sort -k 1 -gr | head -n 10
+   31  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 2 | sort | uniq -c | sort -k 1 -gr | head -n 10 > top_customers.txt
+   32  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 4,6 | sort | uniq -c | sort -k 1 -gr | head -n 10
+   33  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 4,6 | sort | uniq -c | sort -k 1 -gr | head -n 10 > top_products.txt
+   34  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 7 | sort | uniq -c | sort -k 1 -gr 
+   35  tail -n +2 amazon_reviews_10k_random.tsv | cut -f 7 | sort | uniq -c | sort -k 1 -gr > hist_categories.txt
+   36  history > hw03_history.txt
