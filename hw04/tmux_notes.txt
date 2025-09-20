@@ -1,0 +1,7 @@
+I created a new tmux session named hw04 which is what I used while doing the
+homework. It was useful because I stopped doing the homework halfway, and
+reopening and attaching to the session brought me right back to where I was. I
+did not use any panes, but I did create one more window which I named notes. I
+used this window to open up vi when writing the reports for the various parts
+of the homework. Doing this in a separate window made it easy to switch back
+and forth to copy and paste commands and outputs.

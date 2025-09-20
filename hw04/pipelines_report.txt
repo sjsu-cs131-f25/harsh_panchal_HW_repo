@@ -1,0 +1,48 @@
+# make out directory for future outputs
+mkdir out/
+
+# histogram
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | sort | uniq -c | sort -nr
+# output
+    642 5
+    190 4
+     82 3
+     50 1
+     36 2
+
+# same command but with tee to write to out/hist_star_1k.txt
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | sort | uniq -c | sort -nr | tee out/hist_star_1k.txt
+
+# join command
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -k 2,2 > tmp.txt
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f5,6 | sort -t $'\t' -k1,1 -u > pid_title.tsv
+join -1 2 -2 1 tmp.txt pid_title.tsv | sort -nr -k 2 | tee top_10_products.txt
+# output 
+245449872 11 Catching Fire (The Hunger Games)
+600633062 10 Fifty Shades of Grey (Fifty Shades, Book 1)
+488246640 9 The Secret Society® - Hidden Mystery
+9632738 7 Minecraft
+569156287 7 Facebook
+46324555 6 Candy Crush Saga
+93816562 5 Gone Girl
+828652896 5 Crossy Road
+721926847 5 Wool Omnibus Edition [Kindle in Motion] (Silo series Book 1)
+661195539 5 Guardians of the Galaxy (Theatrical)
+
+# compare with comm
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | head -n 500 | sort -u > top_half.txt
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | tail -n 500 | sort -u > bot_half.txt
+comm -23 top_half.txt bot_half.txt | wc -l  # output: 329 
+comm -13 top_half.txt bot_half.txt | wc -l  # output: 350 
+comm -12 top_half.txt bot_half.txt | wc -l  # output: 83
+
+# difference between append and overwrite
+head amazon_reviews_10k_random_hw4.tsv > overwrite.txt && tail amazon_reviews_10k_random_hw4.tsv > overwrite.txt
+wc -l overwrite.txt  # output: 10
+
+head amazon_reviews_10k_random_hw4.tsv >> append.txt && tail amazon_reviews_10k_random_hw4.tsv >> append.txt
+wc -l append.txt  # output: 20
+
+# uniq -c without sorting to show error
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | uniq -c | sort -nr > output.txt 2> errors.txt
+tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | uniq -c | sort -nr &> outputanderrors.txt

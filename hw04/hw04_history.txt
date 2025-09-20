@@ -1,0 +1,149 @@
+    1  touch notes.txt noteA.md .bashrc fake.tsv
+    2  ls note?.txt
+    3  touch notes.txt note1.txt noteA.md .bashrc fake.tsv
+    4  ls note?.txt
+    5  find . -name "*.tsv"
+    6  find ~/ -size +500k
+    7  find ~/ -mtime 0
+    8  unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/a.log
+    9  mkdir logs
+   10  unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/a.log
+   11  unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/b.log
+   12  unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/c.log
+   13  find logs -name "*.log" -exec wc -l {} \;
+   14  find logs -name "*.log" | xargs wc -l
+   15  vi find_report.txt
+   16  unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip| head -n1 && unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | tail -n +2 | shuf -n 1000) > amazon_reviews_10k_random_hw4.tsv
+   17  (unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip| head -n1 && unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | tail -n +2 | shuf -n 1000) > amazon_reviews_10k_random_hw4.tsv
+   18  ls
+   19  head amazon_reviews_10k_random_hw4.tsv 
+   20  rm amazon_reviews_10k_random_hw4.tsv 
+   21* unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip| head -n 1 > amazon_reviews_10k_random_hw4.tsv
+   22* unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | tail -n +2 | shuf -n 1000 >> amazon_reviews_10k_random_hw4.tsv 
+   23  ls
+   24  grep "great(est)?" amazon_reviews_10k_random_hw4.tsv -Ec
+   25  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -E ^[A-Z]
+   26  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -Ec [0-9]$
+   27  grep return -iv amazon_reviews_10k_random_hw4.tsv 
+   28  grep "great(est)?" amazon_reviews_10k_random_hw4.tsv -Ec
+   29  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -E ^[A-Z] >> regex_report.txt 
+   30  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -Ec ^[A-Z]
+   31  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -Ec [0-9]$
+   32  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -E [0-9]$ | gead
+   33  cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -E [0-9]$ | head
+   34  grep return -iv amazon_reviews_10k_random_hw4.tsv | wc -l
+   35  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | sort | uniq -c | sort -nr
+   36  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | sort | uniq -c | sort -nr | tee out/hist_star_1k.txt
+   37  mkdir out
+   38  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 8 | sort | uniq -c | sort -nr | tee out/hist_star_1k.txt
+   39  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | tee tmp.txt
+   40  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5,6 > pid_title.tsv
+   41  head pid_title.tsv 
+   42  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5,6 | sort -t $'\t' -k 1 > pid_title.tsv
+   43  head pid_title.tsv 
+   44  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -t $'\t' -k 2 | head | tee tmp.txt
+   45  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -t $'\t' -k 2 | tee tmp.txt
+   46  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -t $'\t' -k 2,2 | tee tmp.txt
+   47  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -t $'\t' -k 2,2n | tee tmp.txt
+   48  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -t $'\t' -k 2n | tee tmp.txt
+   49  head pid_title.tsv 
+   50  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -k 2 | tee tmp.txt
+   51  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5,6 | sort -k 1 > pid_title.tsv
+   52  head pid_title.tsv 
+   53  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head | sort -k 2 | tee tmp.txt
+   54  join -1 2 -2 1 tmp.txt pid_title.tsv | sort -k 1 -nr
+   55* 
+   56  join -1 1 -2 2 pid_title.tsv tmp.txt| sort -k 1 -nr
+   57  join -1 1 -2 2 pid_title.tsv tmp.txt | heade
+   58  join -1 1 -2 2 pid_title.tsv tmp.txt | head
+   59  head pid_title.tsv 
+   60  cat tmp.txt 
+   61  head pid_title.tsv 
+   62  join -1 1 -2 2 pid_title.tsv tmp.txt | head
+   63  grep 245449872 pid_title.tsv 
+   64  grep pid_title.tsv 46324555
+   65  grep 46324555 pid_title.tsv 
+   66* 
+   67  join -1 1 -2 2 pid_title.tsv tmp.txt
+   68  head pid_title.tsv 
+   69  cat tmp.txt 
+   70  join -1 1 -2 2 pid_title.tsv tmp.txt -o 2.1 1.1 1.2
+   71  join -1 1 -2 2 pid_title.tsv tmp.txt -o 2.1,1.1,1.2
+   72  join -t $'\t' -1 1 -2 2 pid_title.tsv tmp.txt -o 2.1,1.1,1.2
+   73  join -1 1 -2 2 pid_title.tsv tmp.txt -o 2.1,1.1,1.2
+   74  join -t $'\t' -1 1 -2 2 pid_title.tsv tmp.txt -o 2.1,1.1,1.2
+   75  join -1 1 -2 2 pid_title.tsv tmp.txt -o 2.1,1.1,1.2
+   76  join -1 1 -2 2 pid_title.tsv tmp.txt
+   77  ls
+   78  rm pid_title.tsv 
+   79  rm tmp.txt 
+   80  cut -f5,6 reviews.tsv | sort -t $'\t' -k1,1 -u > pid_title.tsv
+   81  cut -f5,6 amazon_reviews_10k_random_hw4.tsv | sort -t $'\t' -k1,1 -u > pid_title.tsv
+   82  cat pid_title.tsv 
+   83  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f5,6 | sort -t $'\t' -k1,1 -u > pid_title.tsv
+   84  cat pid_title.tsv 
+   85  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr
+   86  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr | head > tmp.txt
+   87  cat tmp.txt 
+   88  join -t $'\t' -1 1 -2 1 tmp.txt pid_title.tsv | head
+   89  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -k 2 | head > tmp.txt
+   90  cat tmp.txt 
+   91  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | head | sort -k 2,2 > tmp.txt
+   92  cat tmp.txt 
+   93  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | sort | uniq -c | sort -nr |  head | sort -k 2,2 > tmp.txt
+   94  cat tmp.txt 
+   95  join -t $'\t' -1 1 -2 1 pid_rating.tsv pid_title.tsv | head
+   96  join -t $'\t' -1 2 -2 1 tmp.txt pid_title.tsv | head
+   97  join -1 2 -2 1 tmp.txt pid_title.tsv | head
+   98  join -1 2 -2 1 tmp.txt pid_title.tsv
+   99  join -1 2 -2 1 tmp.txt pid_title.tsv | sort -n -k 2
+  100  join -1 2 -2 1 tmp.txt pid_title.tsv | sort -nr -k 2
+  101  join -1 2 -2 1 tmp.txt pid_title.tsv | sort -nr -k 2 | tee top_10_products.txt
+  102  join -t $'\t' -1 1 -2 1 tmp.txt pid_title.tsv | head
+  103  join -1 2 -2 1 tmp.txt pid_title.tsv | sort -nr -k 2 | tee top_10_products.txt
+  104  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | head -n 5000 > top_half.txt
+  105  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | head -n 500 > top_half.txt
+  106  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | tail -n 500 > bot_half.txt
+  107  comm first_half.txt second_half.txt | wc -l
+  108  comm first_half.txt second_half.txt
+  109  comm top_half.txt bot_half.txt 
+  110  comm top_half.txt bot_half.txt | head
+  111  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | head -n 500 | sort -u > top_half.txt
+  112  tail -n +2 amazon_reviews_10k_random_hw4.tsv | cut -f 5 | tail -n 500 | sort -u > bot_half.txt
+  113  comm top_half.txt bot_half.txt 
+  114  comm -23 top_half.txt bot_half.txt | wc -l
+  115  comm -13 top_half.txt bot_half.txt | wc -l
+  116  comm -12 top_half.txt bot_half.txt | wc -l
+  117  mkdir share
+  118  chmod 770 share/
+  119  ls -ld share/
+  120  touch share/test1.txt share/test2.txt
+  121  mkdir share/subdir
+  122  ls -ld share/
+  123  ls -l share/
+  124  chmod -R share/
+  125  chmod -R 770 share/
+  126  ls -l share/
+  127  ln share/test1.txt share/test1link.txt
+  128  ln -s share/test2.txt share/test2link.txt
+  129  ls -li share/
+  130  mkdir ids/
+  131  mkdir ids/CUSTOMERS
+  132  mkdir ids/PRODUCTS
+  133  head -n 1 amazon_reviews_10k_random_hw4.tsv 
+  134  shuf -n 3 amazon_reviews_10k_random_hw4.tsv | cut -f 2
+  135  grep 7072805 amazon_reviews_10k_random_hw4.tsv | cut -f8 > ids/CUSTOMERS/7072805.txt
+  136  grep 51111232 amazon_reviews_10k_random_hw4.tsv | cut -f8 > ids/CUSTOMERS/51111232.txt
+  137  grep 27349550 amazon_reviews_10k_random_hw4.tsv | cut -f8 > ids/CUSTOMERS/27349550.txt
+  138  shuf -n 3 amazon_reviews_10k_random_hw4.tsv | cut -f 4
+  139  grep B006MW3V6U amazon_reviews_10k_random_hw4.tsv | cut -f8 > ids/PRODUCTS/B006MW3V6U.txt
+  140  grep B009CG9YEQ amazon_reviews_10k_random_hw4.tsv | cut -f8 > ids/PRODUCTS/B009CG9YEQ.txt
+  141  grep B000NQRE1E amazon_reviews_10k_random_hw4.tsv | cut -f8 > ids/PRODUCTS/B000NQRE1E.txt
+  142  ls ids/CUSTOMERS/
+  143  cat ids/CUSTOMERS/27349550.txt 
+  144  cat ids/CUSTOMERS/51111232.txt 
+  145  cat ids/CUSTOMERS/27349550.txt.txt 
+  146  cat ids/CUSTOMERS/7072805.txt 
+  147  cat ids/PRODUCTS/B006MW3V6U.txt 
+  148  history
+  149  history > hw04_history.txt

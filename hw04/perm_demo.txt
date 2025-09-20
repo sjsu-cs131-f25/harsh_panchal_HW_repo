@@ -1,0 +1,41 @@
+# make share directory and change permissions
+mkdir share
+chmod 770 share/
+
+ls -ld share/
+# output:
+drwxrwx--- 2 harshp jelenag 4096 Sep 20 02:51 share/
+# explanation: owner and group can read (r), write (w), and execute (x), while other users cannot.
+
+touch share/test1.txt share/test2.txt
+mkdir share/subdir
+
+# before
+ls -l share
+# output
+drwxr-xr-x 2 harshp jelenag 4096 Sep 20 02:55 subdir
+-rw-r--r-- 1 harshp jelenag    0 Sep 20 02:55 test1.txt
+-rw-r--r-- 1 harshp jelenag    0 Sep 20 02:55 test2.txt
+
+# after
+chmod -R share/
+ls -l share/
+drwxrwx--- 2 harshp jelenag 4096 Sep 20 02:55 subdir
+-rwxrwx--- 1 harshp jelenag    0 Sep 20 02:55 test1.txt
+-rwxrwx--- 1 harshp jelenag    0 Sep 20 02:55 test2.txt
+# explanation: execute permissions on a directory allows you to enter the directory (with cd) and access items inside
+
+ln share/test1.txt share/test1link.txt
+ln -s share/test2.txt share/test2link.txt
+ls -li share/
+# output
+51052579 drwxrwx--- 2 harshp jelenag 4096 Sep 20 02:55 subdir
+50987527 -rwxrwx--- 2 harshp jelenag    0 Sep 20 02:55 test1link.txt
+50987527 -rwxrwx--- 2 harshp jelenag    0 Sep 20 02:55 test1.txt
+50987669 lrwxrwxrwx 1 harshp jelenag   15 Sep 20 03:02 test2link.txt -> share/test2.txt
+50987528 -rwxrwx--- 1 harshp jelenag    0 Sep 20 02:55 test2.txt
+
+# explanation: inodes or hard links are an exact copy of another file where if
+# one file changes, it automatically changes the other file. symlinks or soft
+# links are a file that just points to the true file. if the true file is
+deleted, the symlink doesnt work anymore. 

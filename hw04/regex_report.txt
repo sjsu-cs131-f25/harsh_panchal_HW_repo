@@ -1,0 +1,17 @@
+# create amazon_reviews_10k_random_hw4.tsv
+unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1 > amazon_reviews_10k_random_hw4.tsv
+unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | tail -n +2 | shuf -n 1000 >> amazon_reviews_10k_random_hw4.tsv
+
+grep "great(est)?" amazon_reviews_10k_random_hw4.tsv -Ec
+# output
+197
+
+cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -E ^[A-Z]
+# output is too long to put, 980 lines in total
+
+cut amazon_reviews_10k_random_hw4.tsv -f 6 | grep -Ec [0-9]$
+# output
+75
+
+grep return -iv amazon_reviews_10k_random_hw4.tsv
+# output is too long, 984 lines in total

@@ -1,0 +1,44 @@
+# I ran the following commands and these were the outputs.
+
+# create the dummy files to find
+touch notes.txt note1.txt noteA.md .bashrc fake.tsv
+
+find note?.txt
+# output
+note1.txt notes.txt
+
+find ~/ -size +500k
+# output
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw03/amazon_reviews_10k_random.tsv
+
+find ~/ -mtime 0
+# output
+/mnt/scratch/CS131_jelenag/students/harshp/
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04/noteA.md
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04/notes.txt
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04/fake.tsv
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04/note1.txt
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04/.bashrc
+/mnt/scratch/CS131_jelenag/students/harshp/homework_assignments/hw04/hw04_session.txt
+/mnt/scratch/CS131_jelenag/students/harshp/.bash_history
+
+# make the logs folder and all of the logs
+mkdir logs
+unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/a.log
+unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/b.log
+unzip -p /mnt/scratch/CS131_jelenag/amazon_reviews_multilingual_US_v1_00.tsv.zip | head -n 1000 > logs/c.log
+
+find logs -name "*.log" -exec wc -l {} \;
+# output
+1000 logs/c.log
+1000 logs/b.log
+1000 logs/a.log
+
+find logs -name "*.log" | xargs wc -l
+# output
+   1000 logs/c.log
+   1000 logs/b.log
+   1000 logs/a.log
+   3000 total
